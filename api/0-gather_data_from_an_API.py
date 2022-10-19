@@ -1,10 +1,14 @@
 #!/usr/bin/python3
+"""Script to get todos for a user from API"""
+
+
 import sys
 from urllib import response
 import requests
 
 
 def main():
+    """main function"""
     user_id = int(sys.argv[1])
     todo_url = 'https://jsonplaceholder.typicode.com/todos'
     user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
