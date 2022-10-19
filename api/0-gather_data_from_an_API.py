@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """Script to get todos for a user from API"""
 
-
-import sys
-from urllib import response
 import requests
+import sys
 
 
 def main():
@@ -27,8 +25,7 @@ def main():
 
     user_name = requests.get(user_url).json()['name']
 
-    printer = (
-        """Employee {} is done with tasks({:}/{}):
+    printer = ("""Employee {} is done with tasks({:}/{}):
     """.format(user_name, len(completed), total_questions))
     print(printer, end='')
     for q in completed:
