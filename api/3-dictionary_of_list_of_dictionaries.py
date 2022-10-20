@@ -29,7 +29,6 @@ def main():
                 "completed": todo.get('completed')
             })
 
-    print(output)
     with open("todo_all_employees.json", 'w') as file:
         json.dump(output, file)
 
