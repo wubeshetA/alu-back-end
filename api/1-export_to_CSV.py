@@ -16,7 +16,7 @@ def main():
     file_content = []
 
     response = requests.get(todo_url)
-    user_name = requests.get(user_url).json().get('name')
+    user_name = requests.get(user_url).json().get('username')
 
     for todo in response.json():
         if todo.get('userId') == user_id:
