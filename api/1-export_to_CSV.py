@@ -23,12 +23,14 @@ def main():
             file_content.append(
                 [user_id, user_name, todo.get('completed'), todo.get('title')])
 
-    with open('USER_ID.csv', 'w') as csv_file:
+    file_name = "{}.csv".format(user_id)
+    with open(file_name, 'w') as csv_file:
         csv_writer = csv.writer(csv_file)
         for row in file_content:
             for item in row:
                 str(item)
             csv_writer.writerow(row)
+        print('file written successfully')
 
 
 if __name__ == "__main__":
