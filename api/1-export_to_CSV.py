@@ -21,11 +21,15 @@ def main():
     for todo in response.json():
         if todo.get('userId') == user_id:
             file_content.append(
-                [user_id, user_name, todo.get('completed'), todo.get('title')])
+                [str(user_id),
+                 user_name,
+                 todo.get('completed'),
+                 "{}".format(todo.get('title'))])
 
+    print(file_content)
     file_name = "{}.csv".format(user_id)
-    with open(file_name, 'w') as csv_file:
-        csv_writer = csv.writer(csv_file)
+    with open(file_name, 'w', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         for row in file_content:
             for item in row:
                 str(item)
