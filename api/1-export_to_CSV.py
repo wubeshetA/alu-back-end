@@ -1,0 +1,35 @@
+#!/usr/bin/python3
+"""Script that gets user data (Todo list) from API
+and then export the result to csv file. """
+
+import csv
+import requests
+import sys
+
+
+def main():
+    """main function"""
+    user_id = int(sys.argv[1])
+    todo_url = 'https://jsonplaceholder.typicode.com/todos'
+    user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
+
+    file_content = []
+
+    response = requests.get(todo_url)
+    user_name = requests.get(user_url).json().get('name')
+
+    for todo in response.json():
+        if todo.get('userId') == user_id:
+            file_content.append(
+                [user_id, user_name, todo.get('completed'), todo.get('title')])
+
+    with open('USER_ID.csv', 'w') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        for row in file_content:
+            for item in row:
+                str(item)
+            csv_writer.writerow(row)
+
+
+if __name__ == "__main__":
+    main()
